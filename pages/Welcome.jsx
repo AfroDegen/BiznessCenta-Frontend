@@ -5,58 +5,32 @@ export default function Welcome() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    async function loadUser() {
+    async function getUser() {
       const {
-        data: { user },
+        data: { user }
       } = await supabase.auth.getUser();
 
       setUser(user);
     }
 
-    loadUser();
+    getUser();
   }, []);
 
   if (!user) {
-    return (
-      <div className="welcome-page">
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <h2>Loading...</h2>;
   }
 
   return (
-    <div className="welcome-page">
+    <div>
+      <h1>Welcome to BiznessCenta</h1>
 
-      <div className="welcome-card">
+      <p>{user.user_metadata?.full_name}</p>
 
-        <div className="welcome-badge">
-          ✅ Google Account Connected
-        </div>
+      <p>{user.email}</p>
 
-        {user.user_metadata?.avatar_url && (
-          {user.user_metadata.avatar_url}
-        )}
-
-        <h1>
-          Welcome to BiznessCenta
-        </h1>
-
-        <h2>
-          {user.user_metadata?.full_name ||
-            user.user_metadata?.name}
-        </h2>
-
-        <p>
-          {user.email}
-        </p>
-
-        <button className="primary-btn">
-          Create Business Profile →
-        </button>
-
-      </div>
-
+      <button>
+        Create Business Profile
+      </button>
     </div>
   );
 }
-
