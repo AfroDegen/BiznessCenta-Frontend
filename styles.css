@@ -1,1 +1,68 @@
+.welcome-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f1ea;
+  padding: 24px;
+}
+
+.welcome-card {
+  width: 100%;
+  max-width: 420px;
+
+  background: rgba(255,255,255,.25);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border: 1px solid rgba(255,255,255,.35);
+
+  border-radius: 32px;
+
+  padding: 32px;
+
+  text-align: center;
+}
+
+.welcome-badge {
+  color: #0e8a4b;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.profile-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
+.welcome-card h1 {
+  margin-bottom: 12px;
+}
+
+.welcome-card h2 {
+  margin-bottom: 8px;
+}
+
+.welcome-card p {
+  opacity: .7;
+  margin-bottom: 24px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #0e8a4b;
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+}
 
