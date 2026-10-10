@@ -58,7 +58,11 @@ export default function Welcome() {
         </div>
 
         {user.user_metadata?.avatar_url && (
-          {user.user_metadata.avatar_url}
+          <img
+            src={user.user_metadata.avatar_url}
+            alt="Profile"
+            className="welcome-avatar"
+          />
         )}
 
         <h1>Welcome to BiznessCenta</h1>
