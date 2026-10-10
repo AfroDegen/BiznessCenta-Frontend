@@ -1,24 +1,18 @@
-import GoogleButton from "../components/GoogleButton";
+import { signInWithGoogle } from "../services/auth";
 
-export default function Home() {
+export default function GoogleButton() {
   return (
-    <div className="home-page">
-
-      <h1 className="brand">
-        BiznessCenta
-      </h1>
-
-      <h1>
-        Get Your Business Found.
-      </h1>
-
-      <p>
-        Free website. AI receptionist.
-        Built for business visibility.
-      </p>
-
-      <GoogleButton />
-
-    </div>
+    <button
+      className="google-btn"
+      onClick={() => signInWithGoogle()}
+    >
+      <img
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        alt=""
+        width="18"
+        height="18"
+      />
+      <span className="google-text">Continue with Google</span>
+    </button>
   );
 }
