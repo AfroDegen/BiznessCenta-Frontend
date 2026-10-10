@@ -187,3 +187,40 @@ body {
   color: #111;
   font-weight: 600;
 }
+
+.home-page {
+  min-height: 100vh;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #f7f3ea;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.brand {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0e8a4b;
+}
+
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.google-icon {
+  font-weight: 700;
+  color: #4285f4;
+}
