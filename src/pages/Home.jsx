@@ -1,28 +1,19 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../services/supabase";
+import GoogleButton from "../components/GoogleButton";
 
 export default function Home() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    async function checkSession() {
-      const {
-        data: { session }
-      } = await supabase.auth.getSession();
-
-      if (session) {
-        navigate("/welcome");
-      }
-    }
-
-    checkSession();
-  }, []);
-
   return (
-    <div>
-      <h1>Get Your Business Found.</h1>
+    <div className="page">
+
+      <h1>
+        BiznessCenta
+      </h1>
+
+      <p>
+        Get Your Business Found.
+      </p>
+
+      <GoogleButton />
+
     </div>
   );
 }
-
