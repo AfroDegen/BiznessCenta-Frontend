@@ -13,3 +13,10 @@ function App() {
 }
 
 export default App;
+import CreateBusinessProfile from "./pages/CreateBusinessProfile";
+
+<Route
+  path="/create-business"
+  element={<CreateBusinessProfile />}
+/>
+
