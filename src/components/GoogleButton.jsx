@@ -6,11 +6,11 @@ export default function GoogleButton() {
       className="google-btn"
       onClick={signInWithGoogle}
     >
-      <span className="google-icon">
-        G
-      </span>
+      <span className="google-icon">G</span>
 
-      Continue with Google
+      <span className="google-text">
+        Continue with Google
+      </span>
     </button>
   );
 }
