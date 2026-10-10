@@ -18,37 +18,38 @@ export default function Welcome() {
 
   if (!user) {
     return (
-      <div className="page">
-        Loading...
+      <div className="welcome-page">
+        <h1>Loading...</h1>
       </div>
     );
   }
 
   return (
-    <div className="page">
+    <div className="welcome-page">
+      <div className="welcome-card">
 
-      <h1>
-        Welcome to BiznessCenta
-      </h1>
+        <div className="welcome-badge">
+          ✅ Google Account Connected
+        </div>
 
-      <p>
-        Google Account Connected ✅
-      </p>
+        {user.user_metadata?.avatar_url && (
+          {user.user_metadata.avatar_url}
+        )}
 
-      <h2>
-        {
-          user.user_metadata?.full_name
-        }
-      </h2>
+        <h1>Welcome to BiznessCenta</h1>
 
-      <p>
-        {user.email}
-      </p>
+        <h2>
+          {user.user_metadata?.full_name ||
+            user.user_metadata?.name}
+        </h2>
 
-      <button className="glass-button">
-        Create Business Profile
-      </button>
+        <p>{user.email}</p>
 
+        <button className="primary-btn">
+          Create Business Profile →
+        </button>
+
+      </div>
     </div>
   );
 }
