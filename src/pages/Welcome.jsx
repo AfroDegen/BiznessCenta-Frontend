@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabase";
 
 export default function Welcome() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadUser() {
@@ -50,14 +53,12 @@ export default function Welcome() {
   return (
     <div className="welcome-page">
       <div className="welcome-card">
-        <div className="welcome-badge">✅ Google Account Connected</div>
+        <div className="welcome-badge">
+          ✅ Google Account Connected
+        </div>
 
         {user.user_metadata?.avatar_url && (
-          <img
-            src={user.user_metadata.avatar_url}
-            alt="Profile"
-            className="welcome-avatar"
-          />
+          {user.user_metadata.avatar_url}
         )}
 
         <h1>Welcome to BiznessCenta</h1>
@@ -70,7 +71,12 @@ export default function Welcome() {
 
         <p>{user.email}</p>
 
-        <button className="primary-btn">Create Business Profile →</button>
+        <button
+          className="primary-btn"
+          onClick={() => navigate("/create-business")}
+        >
+          Create Business Profile →
+        </button>
       </div>
     </div>
   );
