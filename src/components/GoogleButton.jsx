@@ -4,9 +4,9 @@ export default function GoogleButton() {
   return (
     <button
       className="google-btn"
-      onClick={signInWithGoogle}
+      onClick={() => signInWithGoogle()}
     >
-      https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg
+      <span className="google-icon">G</span>
 
       <span className="google-text">
         Continue with Google
