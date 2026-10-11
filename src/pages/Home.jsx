@@ -13,11 +13,11 @@ export default function Home() {
         <GoogleButton />
       </div>
 
-      <div className="legal">
+      <p className="legal">
         By continuing, you agree to our{" "}
         <a href="/terms">Terms of Service</a> and{" "}
         <a href="/privacy">Privacy Policy</a>.
-      </div>
+      </p>
     </div>
   );
 }
