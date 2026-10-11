@@ -9,7 +9,7 @@ const STEPS = [
   {
     n: "02",
     title: "Tell us about your business",
-    text: "Name, category, location and your WhatsApp number.",
+    text: "Name, category, location and contact.",
   },
   {
     n: "03",
