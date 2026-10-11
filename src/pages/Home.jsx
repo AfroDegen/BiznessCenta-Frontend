@@ -14,7 +14,7 @@ const STEPS = [
   {
     n: "03",
     title: "Make your brand easier for buyers to find on Google.",
-    text: "Google profile, website, reviews and WhatsApp enquiries, set up for you.",
+    text: "Google profile, website, reviews and WhatsApp enquiries, all set up for you.",
   },
 ];
 
