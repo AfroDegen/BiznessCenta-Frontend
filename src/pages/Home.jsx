@@ -5,7 +5,7 @@ export default function Home() {
     <div className="home-page">
       <div className="hero">
         <h1 className="brand">
-          <span className="brand-white">Bizness</span>
+          <span className="brand-white">Bizness</span>{" "}
           <span className="brand-green">Centa</span>
         </h1>
 
