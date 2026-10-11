@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabase";
+import { supabase } from "../services/supabase";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -74,6 +75,16 @@ export default function Dashboard() {
           Your visibility work is being set up. We will update you here as it progresses.
         </p>
       </div>
+              <button
+          className="primary-btn signout-btn"
+          onClick={async () => {
+            await supabase.auth.signOut();
+            navigate("/", { replace: true });
+          }}
+        >
+          Sign out
+        </button>
+
     </div>
   );
 }
