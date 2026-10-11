@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Welcome from "./pages/Welcome";
-import CreateBusiness from "./pages/CreateBusiness";
+import CreateBusiness from "./pages/CreateBusinessProfile";
 import Dashboard from "./pages/Dashboard";
 import Legal from "./pages/Legal";
 
