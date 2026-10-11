@@ -4,15 +4,30 @@
   box-sizing: border-box;
 }
 
+:root {
+  --green: #0e8a4b;
+  --green-dark: #0a6b3a;
+  --beige: #f7f3ea;
+  --ink: #1a1a1a;
+  --muted: #5c5c5c;
+  --line: #e4dfd2;
+  --card: #ffffff;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #f7f3ea;
-  color: #1a1a1a;
+  font-family: var(--font);
+  background: var(--beige);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: #0e8a4b;
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* ---------- HOME ---------- */
@@ -22,37 +37,40 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 48px 24px;
-  gap: 16px;
-  max-width: 480px;
+  max-width: 440px;
   margin: 0 auto;
+  padding: 64px 28px;
 }
 
 .brand {
-  font-size: 28px;
-  font-weight: 800;
-  color: #0e8a4b;
-  letter-spacing: -0.5px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.2px;
+  margin-bottom: 40px;
 }
 
 .headline {
-  font-size: 34px;
+  font-size: 38px;
   font-weight: 700;
-  line-height: 1.15;
-  color: #1a1a1a;
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+  color: var(--ink);
+  margin-bottom: 14px;
 }
 
 .subheadline {
   font-size: 17px;
-  color: #444;
+  color: var(--muted);
   line-height: 1.5;
+  margin-bottom: 36px;
 }
 
 .legal {
   font-size: 13px;
-  color: #666;
-  line-height: 1.5;
-  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 28px;
 }
 
 /* ---------- GOOGLE BUTTON ---------- */
@@ -63,13 +81,12 @@ a {
   justify-content: center;
   gap: 12px;
   width: 100%;
-  max-width: 380px;
   min-height: 56px;
   padding: 14px 20px;
-  background: #ffffff;
+  background: var(--card);
   border: 2px solid #2b2b33;
   border-radius: 14px;
-  font-family: inherit;
+  font-family: var(--font);
   font-size: 17px;
   font-weight: 600;
   color: #2b2b33;
@@ -77,7 +94,7 @@ a {
   transition: background 0.15s ease, transform 0.1s ease;
 }
 
-.google-btn:hover { background: #f7f3ea; }
+.google-btn:hover { background: var(--beige); }
 .google-btn:active { transform: scale(0.98); }
 
 .google-icon {
@@ -88,7 +105,7 @@ a {
 
 .google-text { white-space: nowrap; }
 
-/* ---------- WELCOME ---------- */
+/* ---------- WELCOME + CREATE BUSINESS CARDS ---------- */
 
 .welcome-page {
   min-height: 100vh;
@@ -99,26 +116,28 @@ a {
 }
 
 .welcome-card {
-  background: #ffffff;
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 20px;
-  padding: 32px 24px;
+  padding: 40px 28px;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  text-align: center;
   align-items: center;
+  text-align: center;
+  gap: 8px;
+  box-shadow: 0 10px 30px rgba(26, 26, 26, 0.06);
 }
 
 .welcome-badge {
-  background: rgba(14, 138, 75, 0.1);
-  color: #0e8a4b;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
+  color: var(--green);
+  background: rgba(14, 138, 75, 0.1);
   padding: 6px 14px;
   border-radius: 999px;
+  margin-bottom: 16px;
 }
 
 .welcome-avatar {
@@ -126,57 +145,76 @@ a {
   height: 72px;
   border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 12px;
 }
 
 .welcome-card h1 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 14px;
 }
 
 .welcome-card h2 {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 600;
-  color: #0e8a4b;
+  color: var(--green);
+  margin-bottom: 4px;
 }
 
 .welcome-card p {
   font-size: 15px;
-  color: #666;
+  color: var(--muted);
+  margin-bottom: 28px;
 }
 
 .primary-btn {
-  margin-top: 12px;
   width: 100%;
-  background: #0e8a4b;
+  background: var(--green);
   color: #fff;
   border: none;
   border-radius: 12px;
   padding: 16px;
-  font-family: inherit;
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
 }
 
-.primary-btn:disabled { opacity: 0.6; }
+.primary-btn:hover { background: var(--green-dark); }
+.primary-btn:disabled { opacity: 0.6; cursor: default; }
 
 /* ---------- FORM ---------- */
 
 .business-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
+  margin-top: 20px;
   text-align: left;
 }
 
 .business-form input {
   width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #d9d9d9;
-  border-radius: 10px;
-  font-family: inherit;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  font-family: var(--font);
   font-size: 16px;
+  color: var(--ink);
+}
+
+.business-form input:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(14, 138, 75, 0.15);
+}
+
+.business-form .primary-btn {
+  margin-top: 8px;
 }
 
 .form-error {
