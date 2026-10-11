@@ -6,11 +6,14 @@ export default function GoogleButton() {
       className="google-btn"
       onClick={() => signInWithGoogle()}
     >
-      <span className="google-icon">G</span>
-
-      <span className="google-text">
-        Continue with Google
-      </span>
+      <img
+        src="/google.svg"
+        alt=""
+        className="google-icon"
+        width="22"
+        height="22"
+      />
+      <span className="google-text">Continue with Google</span>
     </button>
   );
 }
