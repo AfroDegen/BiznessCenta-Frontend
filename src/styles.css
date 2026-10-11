@@ -1,37 +1,57 @@
+/* RESET */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   background: #f4f1ea;
   color: #1f1f1f;
+
   font-family:
     Inter,
     -apple-system,
     BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
+
+  overflow-x: hidden;
 }
+
+button {
+  font-family: inherit;
+}
+
+/* HOME */
 
 .home-page {
   min-height: 100vh;
 
   display: flex;
   flex-direction: column;
-
   justify-content: space-between;
 
-  padding: 48px 24px 32px;
+  padding: 40px 24px 32px;
 }
 
+/* HERO */
+
 .hero {
-  margin-top: 80px;
+  flex: 1;
 
   display: flex;
   flex-direction: column;
 
   align-items: center;
+  justify-content: center;
 
   text-align: center;
 }
@@ -40,68 +60,79 @@ body {
   font-size: 3rem;
   font-weight: 800;
 
-  margin-bottom: 120px;
+  letter-spacing: -0.04em;
 
-  letter-spacing: -0.03em;
+  margin-bottom: 120px;
 }
 
 .headline {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 700;
 
   line-height: 1.1;
 
-  max-width: 380px;
+  max-width: 400px;
 
   margin-bottom: 12px;
 }
 
 .subheadline {
-  font-size: 1.2rem;
-
+  font-size: 1.1rem;
   color: #666;
 
-  margin-bottom: 64px;
+  line-height: 1.6;
 
   max-width: 320px;
 
-  line-height: 1.5;
+  margin-bottom: 56px;
 }
+
+/* GOOGLE BUTTON */
 
 .google-btn {
   width: 100%;
   max-width: 420px;
 
-  padding: 18px 24px;
-
-  border: 2px solid #2d2a35;
-  border-radius: 22px;
-
-  background: white;
-
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   gap: 12px;
 
-  font-size: 1.2rem;
+  padding: 18px 24px;
+
+  background: #ffffff;
+
+  border: 2px solid #2d2a35;
+  border-radius: 24px;
+
+  color: #1f1f1f;
+
+  font-size: 1.1rem;
   font-weight: 600;
 
   cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+.google-btn:hover {
+  opacity: 0.95;
 }
 
 .google-icon {
   font-size: 1.4rem;
+  font-weight: 700;
 }
+
+/* LEGAL */
 
 .legal {
   text-align: center;
 
-  color: #6f6f6f;
+  color: #666;
 
   font-size: 0.9rem;
-
   line-height: 1.6;
 
   max-width: 340px;
@@ -112,4 +143,28 @@ body {
 .legal a {
   color: inherit;
   font-weight: 600;
+
+  text-decoration: underline;
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .brand {
+    font-size: 2.5rem;
+    margin-bottom: 96px;
+  }
+
+  .headline {
+    font-size: 2.2rem;
+  }
+
+  .subheadline {
+    font-size: 1rem;
+  }
+
+  .google-btn {
+    font-size: 1rem;
+    padding: 16px 20px;
+  }
 }
