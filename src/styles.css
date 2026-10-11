@@ -269,5 +269,36 @@ a {
 .signout-btn:hover {
   background: var(--beige);
 }
+.legal-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 28px 64px;
+}
+
+.legal-page h1 {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 24px 0 24px;
+}
+
+.legal-page p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.legal-back {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.legal-updated {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 32px;
+}
 
 
