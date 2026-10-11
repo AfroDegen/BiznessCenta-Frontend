@@ -259,4 +259,15 @@ a {
   color: var(--muted);
   margin-top: 8px;
 }
+.signout-btn {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  margin-top: 16px;
+}
+
+.signout-btn:hover {
+  background: var(--beige);
+}
+
 
