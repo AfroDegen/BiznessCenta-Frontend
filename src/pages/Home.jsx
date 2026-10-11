@@ -30,8 +30,7 @@ export default function Home() {
         </header>
 
         <div className="lp-hero">
-          <p className="lp-eyebrow">Business visibility for Nigerian sellers</p>
-
+          <p className="lp-eyebrow">Digital Marketplace Built For Visibility</p>
           <h1 className="lp-title">
             GET YOUR
             <br />
