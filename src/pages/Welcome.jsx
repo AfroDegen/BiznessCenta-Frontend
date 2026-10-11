@@ -68,7 +68,7 @@ export default function Welcome() {
   return (
     <div className="welcome-page">
       <div className="welcome-card">
-        <div className="welcome-badge">✅ Google Account Connected</div>
+        <div className="welcome-badge"> Google Account Connected</div>
 
         {user.user_metadata?.avatar_url && (
           <img
