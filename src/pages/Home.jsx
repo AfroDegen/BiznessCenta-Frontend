@@ -1,55 +1,23 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../services/supabase";
 import GoogleButton from "../components/GoogleButton";
 
 export default function Home() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    async function checkSession() {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-
-      if (session) {
-        navigate("/welcome");
-      }
-    }
-
-    checkSession();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        if (session) {
-          navigate("/welcome");
-        }
-      }
-    );
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [navigate]);
-
   return (
     <div className="home-page">
-      <h1 className="brand">
-        BiznessCenta
-      </h1>
+      <div className="hero">
+        <h1 className="brand">BiznessCenta</h1>
 
-      <h2>
-        Get Your Business Found.
-      </h2>
+        <h2 className="headline">Get your bizness found.</h2>
 
-      <p>
-        Free website. AI receptionist.
-        Built for business visibility.
-      </p>
+        <p className="subheadline">Convert 3X more sales on Google.</p>
 
-      <GoogleButton />
+        <GoogleButton />
+      </div>
+
+      <div className="legal">
+        By continuing, you agree to our{" "}
+        <a href="/terms">Terms of Service</a> and{" "}
+        <a href="/privacy">Privacy Policy</a>.
+      </div>
     </div>
   );
 }
