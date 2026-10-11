@@ -231,3 +231,32 @@ a {
   color: #b00020;
   font-size: 14px;
 }
+.dashboard-card {
+  align-items: stretch;
+  text-align: left;
+  gap: 16px;
+}
+
+.dashboard-card h1 {
+  font-size: 24px;
+  text-align: left;
+}
+
+.dashboard-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+
+.dashboard-label { color: var(--muted); }
+.dashboard-value { color: var(--ink); font-weight: 600; text-align: right; }
+
+.dashboard-note {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
