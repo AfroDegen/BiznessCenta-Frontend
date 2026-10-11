@@ -1,3 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f7f3ea;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #0e8a4b;
+}
+
+/* ---------- HOME ---------- */
+
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 24px;
+  gap: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.brand {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0e8a4b;
+  letter-spacing: -0.5px;
+}
+
+.headline {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #1a1a1a;
+}
+
+.subheadline {
+  font-size: 17px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.legal {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* ---------- GOOGLE BUTTON ---------- */
+
 .google-btn {
   display: flex;
   align-items: center;
@@ -10,7 +69,7 @@
   background: #ffffff;
   border: 2px solid #2b2b33;
   border-radius: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: inherit;
   font-size: 17px;
   font-weight: 600;
   color: #2b2b33;
@@ -18,35 +77,109 @@
   transition: background 0.15s ease, transform 0.1s ease;
 }
 
-.google-btn:hover {
-  background: #f7f3ea;
-}
-
-.google-btn:active {
-  transform: scale(0.98);
-}
+.google-btn:hover { background: #f7f3ea; }
+.google-btn:active { transform: scale(0.98); }
 
 .google-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 22px;
   height: 22px;
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 1;
-  background: linear-gradient(
-    135deg,
-    #ea4335 0%,
-    #fbbc05 35%,
-    #34a853 65%,
-    #4285f4 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  flex-shrink: 0;
 }
 
-.google-text {
-  white-space: nowrap;
+.google-text { white-space: nowrap; }
+
+/* ---------- WELCOME ---------- */
+
+.welcome-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.welcome-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  align-items: center;
+}
+
+.welcome-badge {
+  background: rgba(14, 138, 75, 0.1);
+  color: #0e8a4b;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.welcome-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.welcome-card h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.welcome-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0e8a4b;
+}
+
+.welcome-card p {
+  font-size: 15px;
+  color: #666;
+}
+
+.primary-btn {
+  margin-top: 12px;
+  width: 100%;
+  background: #0e8a4b;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn:disabled { opacity: 0.6; }
+
+/* ---------- FORM ---------- */
+
+.business-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+}
+
+.business-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.form-error {
+  color: #b00020;
+  font-size: 14px;
 }
