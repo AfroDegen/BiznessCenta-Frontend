@@ -1,86 +1,61 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../services/supabase";
 
-export default function CreateBusinessProfile() {
+export default function CreateBusiness() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
-    businessName: "",
+    name: "",
     category: "",
-    whatsapp: "",
     location: "",
+    whatsapp: "",
   });
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  }
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSaving(true);
+    setError("");
 
-    console.log("Business Profile", form);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    // Supabase insert comes next
-  }
+    const { error } = await supabase.from("businesses").insert({
+      owner_id: user.id,
+      ...form,
+    });
+
+    if (error) {
+      setError(error.message);
+      setSaving(false);
+      return;
+    }
+
+    navigate("/dashboard");
+  };
 
   return (
-    <div className="profile-page">
-      <div className="profile-card">
+    <div className="welcome-page">
+      <div className="welcome-card">
+        <h1>Create your business profile</h1>
 
-        <h1>Create Business Profile</h1>
+        <form onSubmit={handleSubmit} className="business-form">
+          <input name="name" placeholder="Business name" value={form.name} onChange={handleChange} required />
+          <input name="category" placeholder="Category (e.g. fashion, salon)" value={form.category} onChange={handleChange} />
+          <input name="location" placeholder="Location (e.g. Lagos, Osogbo)" value={form.location} onChange={handleChange} />
+          <input name="whatsapp" placeholder="WhatsApp number" value={form.whatsapp} onChange={handleChange} />
 
-        <p>
-          Let's get your business ready for
-          visibility.
-        </p>
+          {error && <p className="form-error">{error}</p>}
 
-        <form onSubmit={handleSubmit}>
-
-          <input
-            type="text"
-            name="businessName"
-            placeholder="Business Name"
-            value={form.businessName}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="text"
-            name="category"
-            placeholder="Business Category"
-            value={form.category}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="text"
-            name="whatsapp"
-            placeholder="WhatsApp Number"
-            value={form.whatsapp}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="text"
-            name="location"
-            placeholder="Location"
-            value={form.location}
-            onChange={handleChange}
-            required
-          />
-
-          <button
-            type="submit"
-            className="primary-btn"
-          >
-            Save Profile
+          <button className="primary-btn" type="submit" disabled={saving}>
+            {saving ? "Saving..." : "Save & Continue"}
           </button>
-
         </form>
-
       </div>
     </div>
   );
