@@ -235,7 +235,7 @@ a {
 
 .dashboard-page {
   min-height: 100vh;
-  background: #f4f1ea;
+  background: var(--beige);
 
   padding: 24px 20px 100px;
 
