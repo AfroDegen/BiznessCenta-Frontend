@@ -1,62 +1,52 @@
-return (
-  <div className="dashboard-page">
-    <header className="dashboard-header">
-      <h1>Good Morning 👋</h1>
-      <p>{business.name}</p>
-    </header>
+<div className="dashboard-page">
+  <header className="dashboard-header">
+    <h1>Good Morning</h1>
+    <p>{business.name}</p>
+  </header>
 
-    <section className="insight-card trending-card">
-      <div className="card-image"></div>
+  <section className="insight-card">
+    <div className="card-image trend-image"></div>
 
-      <div className="card-content">
-        <h2>🔥 Trending In Your Niche</h2>
+    <div className="card-content">
+      <h2>Trending In Your Niche</h2>
 
-        <p>
-          More customers are searching for businesses like yours this week.
-        </p>
+      <p>
+        Luxury jewellery searches increased
+        18% this week.
+      </p>
+    </div>
+  </section>
 
-        <button className="card-link">
-          Learn More →
-        </button>
-      </div>
-    </section>
+  <section className="insight-card">
+    <div className="card-image recommendation-image"></div>
 
-    <section className="insight-card recommendations-card">
-      <div className="card-image"></div>
+    <div className="card-content">
+      <h2>Recommendations For The Week</h2>
 
-      <div className="card-content">
-        <h2>💡 Recommendations For The Week</h2>
+      <p>
+        Add 5 new photos to improve
+        profile visibility.
+      </p>
+    </div>
+  </section>
 
-        <p>
-          Add 5 business photos to improve visibility and engagement.
-        </p>
+  <section className="insight-card">
+    <div className="card-image reviews-image"></div>
 
-        <button className="card-link">
-          Do This →
-        </button>
-      </div>
-    </section>
+    <div className="card-content">
+      <h2>Customer Reviews</h2>
 
-    <section className="insight-card reviews-card">
-      <div className="card-image"></div>
+      <p>
+        You have no reviews yet.
+        Request your first review from
+        existing customers.
+      </p>
+    </div>
+  </section>
 
-      <div className="card-content">
-        <h2>⭐ What Customers Are Saying</h2>
-
-        <p>
-          You have no reviews yet. Click here to get your first review from existing customers.
-        </p>
-
-        <button className="card-link">
-          Get Reviews →
-        </button>
-      </div>
-    </section>
-
-    <nav className="bottom-nav">
-      <button>🏠</button>
-      <button>📚</button>
-      <button>👤</button>
-    </nav>
-  </div>
-);
+  <nav className="bottom-nav">
+    <button>Home</button>
+    <button>Library</button>
+    <button>Profile</button>
+  </nav>
+</div>
