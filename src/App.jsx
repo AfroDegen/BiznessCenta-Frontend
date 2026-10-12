@@ -6,7 +6,7 @@ import {
 
 import Home from "./pages/Home";
 import Welcome from "./pages/Welcome";
-import CreateBusiness from "./pages/CreateBusiness";
+import CreateBusiness from "./pages/CreateBusinessProfile";
 import Dashboard from "./pages/Dashboard";
 
 import Terms from "./pages/Terms";
