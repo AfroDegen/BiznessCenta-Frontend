@@ -619,4 +619,8 @@ a {
   text-align: center;
   margin-top: 12px;
 }
+.lp-screen-preview { background: var(--beige); }
+.lp-h2-dark { color: var(--ink); }
+.lp-sub-dark { color: var(--muted); }
+.lp-body-light .ap { margin-bottom: 28px; }
 
