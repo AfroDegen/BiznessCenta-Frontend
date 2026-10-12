@@ -31,6 +31,15 @@ export default function CreateBusiness() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
+    
+    const {
+  data: { user },
+} = await supabase.auth.getUser();
+
+alert(`
+Email: ${user.email}
+ID: ${user.id}
+`);
 
     if (!user) {
       navigate("/");
