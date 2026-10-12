@@ -8,15 +8,12 @@ import Home from "./pages/Home";
 import Welcome from "./pages/Welcome";
 import CreateBusiness from "./pages/CreateBusinessProfile";
 import Dashboard from "./pages/Dashboard";
-
-import Terms from "./pages/Terms";
-import Privacy from "./pages/Privacy";
+import Legal from "./pages/Legal";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route
           path="/"
           element={<Home />}
@@ -39,14 +36,13 @@ function App() {
 
         <Route
           path="/terms"
-          element={<Terms />}
+          element={<Legal type="terms" />}
         />
 
         <Route
           path="/privacy"
-          element={<Privacy />}
+          element={<Legal type="privacy" />}
         />
-
       </Routes>
     </BrowserRouter>
   );
