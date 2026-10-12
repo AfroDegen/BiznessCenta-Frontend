@@ -24,12 +24,14 @@ export default function Home() {
   return (
     <div className="lp">
       <section className="lp-screen lp-screen-1">
-        <header className="lp-header">
+                <header className="lp-header">
           <span className="lp-brand">
             <span className="lp-brand-white">Bizness</span>{" "}
             <span className="lp-brand-green">Centa</span>
           </span>
+          <Menu />
         </header>
+
 
         <div className="lp-hero">
           <p className="lp-eyebrow">Digital Marketplace Built For Visibility</p>
