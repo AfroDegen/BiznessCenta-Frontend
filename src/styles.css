@@ -324,6 +324,11 @@ a {
 .lp-header {
   background: #0f3d26;
   padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 20;
 }
 
 .lp-brand {
@@ -624,3 +629,66 @@ a {
 .lp-sub-dark { color: var(--muted); }
 .lp-body-light .ap { margin-bottom: 28px; }
 
+.menu-btn {
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 30;
+}
+
+.menu-bar,
+.menu-bar::before,
+.menu-bar::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.menu-bar { position: relative; }
+
+.menu-bar::before,
+.menu-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-bar::before { top: -8px; }
+.menu-bar::after { top: 8px; }
+
+.menu-bar-open { background: transparent; }
+.menu-bar-open::before { top: 0; transform: rotate(45deg); }
+.menu-bar-open::after { top: 0; transform: rotate(-45deg); }
+
+.menu-panel {
+  position: fixed;
+  inset: 0;
+  background: #0f3d26;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 32px;
+}
+
+.menu-panel a {
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.menu-panel a:active { color: #4ade80; }
