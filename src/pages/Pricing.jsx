@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -5,18 +6,21 @@ const PLANS = [
   {
     id: "basic",
     name: "Basic",
-    tagline: "Create your profile.",
+    tagline: "Get started for free.",
     setup: "Free",
     monthly: "No monthly fee",
-    features: ["Business profile on Bizness Centa", "Dashboard access"],
+    features: [
+      "Business profile on Bizness Centa",
+      "Dashboard access",
+    ],
     bestFor: "Anyone who wants to get started",
   },
   {
     id: "starter",
     name: "Starter",
     tagline: "Get found online.",
-    setup: "N25,000",
-    monthly: "One-time setup",
+    setup: "₦25,000",
+    monthly: "One-time setup fee",
     features: [
       "Google Business Profile optimization",
       "Website setup",
@@ -31,8 +35,8 @@ const PLANS = [
     id: "growth",
     name: "Growth",
     tagline: "Generate more enquiries.",
-    setup: "N50,000",
-    monthly: "+ N10,000 per month",
+    setup: "₦50,000",
+    monthly: "+ ₦10,000/month",
     intro: "Everything in Starter, plus:",
     features: [
       "AI receptionist",
@@ -48,9 +52,9 @@ const PLANS = [
   {
     id: "premium",
     name: "Premium",
-    tagline: "Build visibility infrastructure.",
-    setup: "N100,000",
-    monthly: "+ N20,000 per month",
+    tagline: "Build your visibility infrastructure.",
+    setup: "₦100,000",
+    monthly: "+ ₦20,000/month",
     intro: "Everything in Growth, plus:",
     features: [
       "Advanced Beacon intelligence",
@@ -67,8 +71,9 @@ const PLANS = [
 
 function whatsappLink(planName) {
   const text = encodeURIComponent(
-    `Hello Bizness Centa, I am interested in the ${planName} plan.`
+    `Hello Bizness Centa, I'm interested in the ${planName} plan. Please share the next steps.`
   );
+
   return `https://wa.me/2349110483989?text=${text}`;
 }
 
@@ -76,67 +81,91 @@ export default function Pricing() {
   const [selected, setSelected] = useState("growth");
   const [open, setOpen] = useState(null);
 
-  const plan = PLANS.find((p) => p.id === selected);
+  const plan = PLANS.find((p) => p.id === selected) ?? PLANS[2];
 
   return (
-    <div className="pricing-page">
-      <Link to="/" className="legal-back">Back</Link>
+    <main className="pricing-page">
+      <Link to="/" className="legal-back">
+        Back
+      </Link>
 
-      <h1 className="pricing-title">Pricing</h1>
-      <p className="pricing-intro">
-        For the next 90 days, we build to make your business more trustable and
-        recommendable.
-      </p>
+      <header className="pricing-header">
+        <h1 className="pricing-title">Simple, transparent pricing.</h1>
+        <p className="pricing-intro">
+          Get your business found, build customer trust, and turn
+          online visibility into enquiries. Choose the plan that
+          fits your business.
+        </p>
+      </header>
 
-      <div className="plan-list">
+      <div
+        className="plan-list"
+        role="radiogroup"
+        aria-label="Choose a Bizness Centa plan"
+      >
         {PLANS.map((p) => {
           const isSelected = selected === p.id;
           const isOpen = open === p.id;
+          const detailsId = `plan-details-${p.id}`;
 
           return (
-            <div
+            <section
               key={p.id}
               className={isSelected ? "plan-card selected" : "plan-card"}
-              onClick={() => setSelected(p.id)}
             >
-              <div className="plan-body">
-                <div>
-                  <div className="plan-name">
-                    {p.name}
-                    <span className="radio" />
-                  </div>
-                  <div className="plan-tagline">{p.tagline}</div>
-                </div>
+              <button
+                type="button"
+                className="plan-select"
+                role="radio"
+                aria-checked={isSelected}
+                onClick={() => setSelected(p.id)}
+              >
+                <span className="plan-body">
+                  <span className="plan-heading">
+                    <span className="plan-name">
+                      {p.name}
+                      <span className="radio" aria-hidden="true" />
+                    </span>
+                    <span className="plan-tagline">
+                      {p.tagline}
+                    </span>
+                  </span>
 
-                <div className="plan-price">
-                  <div className="price-main">{p.setup}</div>
-                  <div className="price-note">{p.monthly}</div>
-                </div>
-              </div>
+                  <span className="plan-price">
+                    <span className="price-main">{p.setup}</span>
+                    <span className="price-note">{p.monthly}</span>
+                  </span>
+                </span>
+              </button>
 
               <button
+                type="button"
                 className="expand-toggle"
                 aria-expanded={isOpen}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOpen(isOpen ? null : p.id);
-                }}
+                aria-controls={detailsId}
+                onClick={() => setOpen(isOpen ? null : p.id)}
               >
-                {isOpen ? "Hide details" : "See what is included"}
+                {isOpen ? "Hide details" : "See what's included"}
               </button>
 
               {isOpen && (
-                <div className="plan-details">
-                  {p.intro && <p className="details-intro">{p.intro}</p>}
+                <div className="plan-details" id={detailsId}>
+                  {p.intro && (
+                    <p className="details-intro">{p.intro}</p>
+                  )}
+
                   <ul>
-                    {p.features.map((f) => (
-                      <li key={f}>{f}</li>
+                    {p.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
                     ))}
                   </ul>
-                  <p className="best-for">For: {p.bestFor}</p>
+
+                  <p className="best-for">
+                    <strong>Ideal for:</strong> {p.bestFor}
+                  </p>
                 </div>
               )}
-            </div>
+            </section>
           );
         })}
       </div>
@@ -146,11 +175,16 @@ export default function Pricing() {
           className="primary-btn pricing-btn"
           href={whatsappLink(plan.name)}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
+          aria-label={`Get started with the ${plan.name} plan on WhatsApp`}
         >
           Get started with {plan.name}
         </a>
+
+        <p className="pricing-note">
+          Questions about a plan? Contact us on WhatsApp.
+        </p>
       </div>
-    </div>
+    </main>
   );
 }
