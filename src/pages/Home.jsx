@@ -1,4 +1,5 @@
 import GoogleButton from "../components/GoogleButton";
+import AppearPreview from "../components/AppearPreview";
 
 const STEPS = [
   {
@@ -46,6 +47,19 @@ export default function Home() {
           <div className="lp-cta">
             <GoogleButton />
             <p className="lp-cta-note">Free to start. Takes under a minute.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="lp-screen lp-screen-preview">
+        <div className="lp-body lp-body-light">
+          <h2 className="lp-h2 lp-h2-dark">This is how customers find you.</h2>
+          <p className="lp-h2-sub lp-sub-dark">
+            On Google Search, on Maps, and on WhatsApp.
+          </p>
+          <AppearPreview />
+          <div className="lp-cta">
+            <GoogleButton />
           </div>
         </div>
       </section>
