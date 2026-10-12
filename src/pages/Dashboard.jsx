@@ -1,89 +1,62 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../services/supabase";
+return (
+  <div className="dashboard-page">
+    <header className="dashboard-header">
+      <h1>Good Morning 👋</h1>
+      <p>{business.name}</p>
+    </header>
 
-export default function Dashboard() {
-  const navigate = useNavigate();
-  const [business, setBusiness] = useState(null);
-  const [loading, setLoading] = useState(true);
+    <section className="insight-card trending-card">
+      <div className="card-image"></div>
 
-  useEffect(() => {
-    async function loadBusiness() {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+      <div className="card-content">
+        <h2>🔥 Trending In Your Niche</h2>
 
-      if (!session) {
-        navigate("/", { replace: true });
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from("businesses")
-        .select("name, category, location, whatsapp")
-        .eq("owner_id", session.user.id)
-        .maybeSingle();
-
-      if (error) {
-        console.error(error);
-      }
-
-      if (!data) {
-        navigate("/create-business", { replace: true });
-        return;
-      }
-
-      setBusiness(data);
-      setLoading(false);
-    }
-
-    loadBusiness();
-  }, [navigate]);
-
-  async function handleSignOut() {
-    await supabase.auth.signOut();
-    navigate("/", { replace: true });
-  }
-
-  if (loading) {
-    return (
-      <div className="welcome-page">
-        <p>Loading your dashboard...</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="welcome-page">
-      <div className="welcome-card dashboard-card">
-        <p className="welcome-badge dashboard-badge">Live</p>
-
-        <h1>{business.name}</h1>
-
-        <div className="dashboard-row">
-          <span className="dashboard-label">Category</span>
-          <span className="dashboard-value">{business.category || "Not set"}</span>
-        </div>
-
-        <div className="dashboard-row">
-          <span className="dashboard-label">Location</span>
-          <span className="dashboard-value">{business.location || "Not set"}</span>
-        </div>
-
-        <div className="dashboard-row">
-          <span className="dashboard-label">WhatsApp</span>
-          <span className="dashboard-value">{business.whatsapp || "Not set"}</span>
-        </div>
-
-        <p className="dashboard-note">
-          Your visibility work is being set up. We will update you here as it
-          progresses.
+        <p>
+          More customers are searching for businesses like yours this week.
         </p>
 
-        <button className="primary-btn signout-btn" onClick={handleSignOut}>
-          Sign out
+        <button className="card-link">
+          Learn More →
         </button>
       </div>
-    </div>
-  );
-}
+    </section>
+
+    <section className="insight-card recommendations-card">
+      <div className="card-image"></div>
+
+      <div className="card-content">
+        <h2>💡 Recommendations For The Week</h2>
+
+        <p>
+          Add 5 business photos to improve visibility and engagement.
+        </p>
+
+        <button className="card-link">
+          Do This →
+        </button>
+      </div>
+    </section>
+
+    <section className="insight-card reviews-card">
+      <div className="card-image"></div>
+
+      <div className="card-content">
+        <h2>⭐ What Customers Are Saying</h2>
+
+        <p>
+          You have no reviews yet. Click here to get your first review from existing customers.
+        </p>
+
+        <button className="card-link">
+          Get Reviews →
+        </button>
+      </div>
+    </section>
+
+    <nav className="bottom-nav">
+      <button>🏠</button>
+      <button>📚</button>
+      <button>👤</button>
+    </nav>
+  </div>
+);
