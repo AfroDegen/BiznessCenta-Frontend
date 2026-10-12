@@ -64,7 +64,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard-page">
       <header className="dashboard-header">
-        <h1>Good Morning</h1>
+        <h1>Good Morning,</h1>
         <p>{business.name}</p>
       </header>
 
