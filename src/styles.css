@@ -469,4 +469,13 @@ a {
 .lp-footer a {
   color: #cfe9da;
 }
+.dashboard-badge {
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
+
+.dashboard-card {
+  width: 100%;
+  max-width: 420px;
+}
 
