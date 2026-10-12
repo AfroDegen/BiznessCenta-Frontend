@@ -1,24 +1,54 @@
-import { Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
 import Home from "./pages/Home";
 import Welcome from "./pages/Welcome";
-import CreateBusiness from "./pages/CreateBusinessProfile";
+import CreateBusiness from "./pages/CreateBusiness";
 import Dashboard from "./pages/Dashboard";
-import Legal from "./pages/Legal";
-import About from "./pages/About";
-import Pricing from "./pages/Pricing";
+
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/welcome" element={<Welcome />} />
-      <Route path="/create-business" element={<CreateBusiness />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/terms" element={<Legal />} />
-      <Route path="/privacy" element={<Legal />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/pricing" element={<Pricing />} />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+
+        <Route
+          path="/"
+          element={<Home />}
+        />
+
+        <Route
+          path="/welcome"
+          element={<Welcome />}
+        />
+
+        <Route
+          path="/create-business"
+          element={<CreateBusiness />}
+        />
+
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
+
+        <Route
+          path="/terms"
+          element={<Terms />}
+        />
+
+        <Route
+          path="/privacy"
+          element={<Privacy />}
+        />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
