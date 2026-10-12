@@ -15,14 +15,16 @@ export default function Dashboard() {
       } = await supabase.auth.getSession();
 
       if (!session) {
-        navigate("/", { replace: true });
+        navigate("/", {
+          replace: true,
+        });
         return;
       }
 
       const { data, error } = await supabase
         .from("businesses")
         .select("*")
-        .eq("user_id", session.user.id)
+        .eq("owner_id", session.user.id)
         .maybeSingle();
 
       if (error) {
@@ -54,7 +56,7 @@ export default function Dashboard() {
   if (loading) {
     return (
       <div className="dashboard-page">
-        <p>Loading your dashboard...</p>
+        Loading your dashboard...
       </div>
     );
   }
@@ -63,47 +65,50 @@ export default function Dashboard() {
     <div className="dashboard-page">
       <header className="dashboard-header">
         <h1>Good Morning</h1>
-
-        <p>{business.business_name}</p>
+        <p>{business.name}</p>
       </header>
 
       <section className="insight-card">
-        <div className="card-image trend-image"></div>
+        <div className="card-image trend-image" />
 
         <div className="card-content">
-          <h2>Trending In Your Niche</h2>
+          <h2>
+            Trending In Your Niche
+          </h2>
 
           <p>
-            Search activity is increasing in your
-            category. Customers are actively looking
-            for businesses like yours this week.
+            Search activity is increasing
+            in your category.
           </p>
         </div>
       </section>
 
       <section className="insight-card">
-        <div className="card-image recommendation-image"></div>
+        <div className="card-image recommendation-image" />
 
         <div className="card-content">
-          <h2>Recommendations For The Week</h2>
+          <h2>
+            Recommendations For The Week
+          </h2>
 
           <p>
-            Add at least 5 new business photos.
-            Businesses with recent photos are more
-            likely to receive profile interactions.
+            Add 5 new photos to improve
+            visibility and engagement.
           </p>
         </div>
       </section>
 
       <section className="insight-card">
-        <div className="card-image reviews-image"></div>
+        <div className="card-image reviews-image" />
 
         <div className="card-content">
-          <h2>Customer Reviews</h2>
+          <h2>
+            Customer Reviews
+          </h2>
 
           <p>
             You have no reviews yet.
-            Click here to get your first review
+            Request your first review
             from existing customers.
           </p>
         </div>
@@ -125,9 +130,7 @@ export default function Dashboard() {
               : "nav-item"
           }
         >
-          <span className="nav-label">
-            Home
-          </span>
+          Home
         </NavLink>
 
         <NavLink
@@ -138,9 +141,7 @@ export default function Dashboard() {
               : "nav-item"
           }
         >
-          <span className="nav-label">
-            Library
-          </span>
+          Library
         </NavLink>
 
         <NavLink
@@ -151,9 +152,7 @@ export default function Dashboard() {
               : "nav-item"
           }
         >
-          <span className="nav-label">
-            Profile
-          </span>
+          Profile
         </NavLink>
       </nav>
     </div>
