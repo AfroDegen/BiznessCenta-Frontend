@@ -40,6 +40,11 @@ export default function Dashboard() {
     loadBusiness();
   }, [navigate]);
 
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+    navigate("/", { replace: true });
+  }
+
   if (loading) {
     return (
       <div className="welcome-page">
@@ -51,7 +56,7 @@ export default function Dashboard() {
   return (
     <div className="welcome-page">
       <div className="welcome-card dashboard-card">
-        <p className="welcome-badge">Live</p>
+        <p className="welcome-badge dashboard-badge">Live</p>
 
         <h1>{business.name}</h1>
 
@@ -71,19 +76,14 @@ export default function Dashboard() {
         </div>
 
         <p className="dashboard-note">
-          Your visibility work is being set up. We will update you here as it progresses.
+          Your visibility work is being set up. We will update you here as it
+          progresses.
         </p>
-      </div>
-              <button
-          className="primary-btn signout-btn"
-          onClick={async () => {
-            await supabase.auth.signOut();
-            navigate("/", { replace: true });
-          }}
-        >
+
+        <button className="primary-btn signout-btn" onClick={handleSignOut}>
           Sign out
         </button>
-
+      </div>
     </div>
   );
 }
