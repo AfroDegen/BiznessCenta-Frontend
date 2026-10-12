@@ -23,35 +23,48 @@ export default function CreateBusiness() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    setSaving(true);
-    setError("");
-    
-    const {
-  data: { user },
-} = await supabase.auth.getUser();
+  setSaving(true);
+  setError("");
 
-alert(`
-Email: ${user.email}
-ID: ${user.id}
-`);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-    if (!user) {
-      navigate("/");
-      return;
-    }
+  if (!user) {
+    navigate("/");
+    return;
+  }
 
-    const { data: existing } = await supabase
-      .from("businesses")
-      .select("id")
-      .eq("owner_id", user.id)
-      .maybeSingle();
+  alert(`Email: ${user.email}\nID: ${user.id}`);
 
-    if (existing) {
-      navigate("/dashboard");
-      return;
-    }
+  const { data: existing } = await supabase
+    .from("businesses")
+    .select("id")
+    .eq("owner_id", user.id)
+    .maybeSingle();
+
+  if (existing) {
+    navigate("/dashboard");
+    return;
+  }
+
+  const { error: insertError } = await supabase
+    .from("businesses")
+    .insert({
+      owner_id: user.id,
+      ...form,
+    });
+
+  if (insertError) {
+    setError(insertError.message);
+    setSaving(false);
+    return;
+  }
+
+  navigate("/dashboard");
+};
 
     const { error } = await supabase
       .from("businesses")
