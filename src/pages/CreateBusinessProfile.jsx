@@ -27,10 +27,6 @@ export default function CreateBusiness() {
 
     setSaving(true);
     setError("");
-
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
     
     const {
   data: { user },
