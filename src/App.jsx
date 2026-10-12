@@ -6,6 +6,9 @@ import CreateBusiness from "./pages/CreateBusinessProfile";
 import Dashboard from "./pages/Dashboard";
 import Legal from "./pages/Legal";
 
+import About from "./pages/About";
+import Pricing from "./pages/Pricing";
+
 function App() {
   return (
     <Routes>
@@ -27,6 +30,16 @@ function App() {
       <Route
         path="/dashboard"
         element={<Dashboard />}
+      />
+
+      <Route
+        path="/about"
+        element={<About />}
+      />
+
+      <Route
+        path="/pricing"
+        element={<Pricing />}
       />
 
       <Route
