@@ -23,58 +23,42 @@ export default function CreateBusiness() {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  setSaving(true);
-  setError("");
+    setSaving(true);
+    setError("");
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (!user) {
-    navigate("/");
-    return;
-  }
+    if (!user) {
+      navigate("/");
+      return;
+    }
 
-  alert(`Email: ${user.email}\nID: ${user.id}`);
+    alert(`Email: ${user.email}\nID: ${user.id}`);
 
-  const { data: existing } = await supabase
-    .from("businesses")
-    .select("id")
-    .eq("owner_id", user.id)
-    .maybeSingle();
+    const { data: existing } = await supabase
+      .from("businesses")
+      .select("id")
+      .eq("owner_id", user.id)
+      .maybeSingle();
 
-  if (existing) {
-    navigate("/dashboard");
-    return;
-  }
+    if (existing) {
+      navigate("/dashboard");
+      return;
+    }
 
-  const { error: insertError } = await supabase
-    .from("businesses")
-    .insert({
-      owner_id: user.id,
-      ...form,
-    });
-
-  if (insertError) {
-    setError(insertError.message);
-    setSaving(false);
-    return;
-  }
-
-  navigate("/dashboard");
-};
-
-    const { error } = await supabase
+    const { error: insertError } = await supabase
       .from("businesses")
       .insert({
         owner_id: user.id,
         ...form,
       });
 
-    if (error) {
-      setError(error.message);
+    if (insertError) {
+      setError(insertError.message);
       setSaving(false);
       return;
     }
@@ -121,13 +105,12 @@ export default function CreateBusiness() {
           />
 
           {error && (
-            <p className="form-error">
-              {error}
-            </p>
+            <p className="form-error">{error}</p>
           )}
 
           <button
             className="primary-btn"
+            type="submit"
             disabled={saving}
           >
             {saving
