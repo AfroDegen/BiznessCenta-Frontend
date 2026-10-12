@@ -1309,3 +1309,46 @@ a {
   }
 }
 
+/* Bizness Centa — Liquid Glass accents */
+
+.glass-surface {
+  background: rgba(255, 254, 250, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-top-color: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  box-shadow:
+    0 12px 36px rgba(31, 54, 37, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  backdrop-filter: blur(24px) saturate(155%);
+}
+
+.glass-nav {
+  background: rgba(27, 61, 43, 0.88);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+}
+
+.glass-control {
+  background: rgba(255, 254, 250, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  box-shadow:
+    0 6px 20px rgba(25, 40, 29, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-surface,
+  .glass-control {
+    background: #fffefa;
+  }
+
+  .glass-nav {
+    background: #1b3d2b;
+  }
+}
+
