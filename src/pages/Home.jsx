@@ -1,5 +1,6 @@
 import GoogleButton from "../components/GoogleButton";
 import AppearPreview from "../components/AppearPreview";
+import Menu from "../components/Menu";
 
 const STEPS = [
   {
