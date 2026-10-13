@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from “react”;
-import { NavLink, useNavigate } from “react-router-dom”;
-import { supabase } from “../services/supabase”;
+import { useCallback, useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { supabase } from "../services/supabase";
 
 export default function Profile() {
 const navigate = useNavigate();
@@ -8,13 +8,13 @@ const navigate = useNavigate();
 const [loading, setLoading] = useState(true);
 const [signingOut, setSigningOut] = useState(false);
 const [business, setBusiness] = useState(null);
-const [email, setEmail] = useState(””);
-const [error, setError] = useState(””);
-const [signOutError, setSignOutError] = useState(””);
+const [email, setEmail] = useState("");
+const [error, setError] = useState("");
+const [signOutError, setSignOutError] = useState("");
 
 const loadProfile = useCallback(async () => {
 setLoading(true);
-setError(””);
+setError("");
 
 const {
   data: { session },
@@ -31,10 +31,10 @@ if (!session) {
 }
 setEmail(session.user.email || "");
 const { data, error: businessError } = await supabase
-  .from("businesses")
-  .select("id, name, category, location, whatsapp")
-  .eq("owner_id", session.user.id)
-  .maybeSingle();
+ .from("businesses")
+ .select("id, name, category, location, whatsapp")
+ .eq("owner_id", session.user.id)
+ .maybeSingle();
 if (businessError) {
   console.error("Could not load business profile:", businessError);
   setError("We couldn't load your business details. Please try again.");
@@ -51,7 +51,7 @@ loadProfile();
 
 async function handleSignOut() {
 setSigningOut(true);
-setSignOutError(””);
+setSignOutError("");
 
 const { error: authError } = await supabase.auth.signOut();
 if (authError) {
@@ -66,11 +66,14 @@ navigate("/", { replace: true });
 
 if (loading) {
 return (
-Loading your profile…
+<main>
+Loading your profile...
+</main>
 );
 }
 
 return (
+<main>
 BIZNESS CENTA
 Your Profile
 Manage your account and business information.
@@ -95,7 +98,7 @@ Manage your account and business information.
       </section>
       <section className="bc-panel">
         <h2>Business information</h2>
-        {business ? (
+        {business? (
           <dl className="bc-details">
             <div>
               <dt>Business name</dt>
@@ -145,13 +148,13 @@ Manage your account and business information.
     onClick={handleSignOut}
     disabled={signingOut}
   >
-    {signingOut ? "Signing out..." : "Sign Out"}
+    {signingOut? "Signing out..." : "Sign Out"}
   </button>
   <nav className="bottom-nav" aria-label="Main navigation">
     <NavLink
       to="/dashboard"
       className={({ isActive }) =>
-        isActive ? "nav-item active" : "nav-item"
+        isActive? "nav-item active" : "nav-item"
       }
     >
       Home
@@ -159,7 +162,7 @@ Manage your account and business information.
     <NavLink
       to="/library"
       className={({ isActive }) =>
-        isActive ? "nav-item active" : "nav-item"
+        isActive? "nav-item active" : "nav-item"
       }
     >
       Library
@@ -167,7 +170,7 @@ Manage your account and business information.
     <NavLink
       to="/profile"
       className={({ isActive }) =>
-        isActive ? "nav-item active" : "nav-item"
+        isActive? "nav-item active" : "nav-item"
       }
     >
       Profile
