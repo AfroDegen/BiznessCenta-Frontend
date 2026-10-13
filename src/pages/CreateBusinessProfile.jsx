@@ -37,8 +37,6 @@ export default function CreateBusiness() {
       return;
     }
 
-    alert(`Email: ${user.email}\nID: ${user.id}`);
-
     const { data: existing } = await supabase
       .from("businesses")
       .select("id")
