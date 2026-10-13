@@ -11,18 +11,20 @@ import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 
 function App() {
-return (
-<Route path="/" element={} />
-<Route path="/welcome" element={} />
-<Route path="/create-business" element={} />
-<Route path="/dashboard" element={} />
-<Route path="/library" element={} />
-<Route path="/profile" element={} />
-<Route path="/about" element={} />
-<Route path="/pricing" element={} />
-<Route path="/terms" element={} />
-<Route path="/privacy" element={} />
-);
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/welcome" element={<Welcome />} />
+      <Route path="/create-business" element={<CreateBusiness />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/library" element={<Library />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/terms" element={<Legal />} />
+      <Route path="/privacy" element={<Legal />} />
+    </Routes>
+  );
 }
 
 export default App;
