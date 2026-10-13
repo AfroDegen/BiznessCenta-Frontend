@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 
 const WHATSAPP =
@@ -22,19 +23,31 @@ export default function Menu() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         onClick={() => setOpen(!open)}
+        style={open ? { zIndex: 10000 } : undefined}
       >
         <span className={open ? "menu-bar menu-bar-open" : "menu-bar"} />
       </button>
 
-      {open && (
-        <nav className="menu-panel">
-          <Link to="/about" onClick={() => setOpen(false)}>About</Link>
-          <Link to="/pricing" onClick={() => setOpen(false)}>Pricing</Link>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
-            Contact
-          </a>
-        </nav>
-      )}
+      {open &&
+        createPortal(
+          <nav className="menu-panel">
+            <Link to="/about" onClick={() => setOpen(false)}>
+              About
+            </Link>
+            <Link to="/pricing" onClick={() => setOpen(false)}>
+              Pricing
+            </Link>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+            >
+              Contact
+            </a>
+          </nav>,
+          document.body
+        )}
     </>
   );
 }
