@@ -1,45 +1,46 @@
-import { NavLink } from “react-router-dom”;
+import { NavLink } from "react-router-dom";
 
 const resources = [
 {
-number: “01”,
-title: “Business visibility”,
+number: "01",
+title: "Business visibility",
 description:
-“Understand how customers discover businesses online and what helps them find yours.”,
-status: “Guidance”,
+"Understand how customers discover businesses online and what helps them find yours.",
+status: "Guidance",
 },
 {
-number: “02”,
-title: “Google Business Profile”,
+number: "02",
+title: "Google Business Profile",
 description:
-“Learn how to prepare your business information for local discovery on Google.”,
-status: “Coming soon”,
+"Learn how to prepare your business information for local discovery on Google.",
+status: "Coming soon",
 },
 {
-number: “03”,
-title: “Content and photos”,
+number: "03",
+title: "Content and photos",
 description:
-“Build a useful collection of business photos, service descriptions, and customer-facing information.”,
-status: “Guidance”,
+"Build a useful collection of business photos, service descriptions, and customer-facing information.",
+status: "Guidance",
 },
 {
-number: “04”,
-title: “Customer reviews”,
+number: "04",
+title: "Customer reviews",
 description:
-“Learn how to request honest feedback and respond professionally to customers.”,
-status: “Guidance”,
+"Learn how to request honest feedback and respond professionally to customers.",
+status: "Guidance",
 },
 {
-number: “05”,
-title: “AI and search visibility”,
+number: "05",
+title: "AI and search visibility",
 description:
-“Explore how clear, consistent business information can support discovery across search and AI tools.”,
-status: “Coming soon”,
+"Explore how clear, consistent business information can support discovery across search and AI tools.",
+status: "Coming soon",
 },
 ];
 
 export default function Library() {
 return (
+<main>
 BIZNESS CENTA
 Your Library
 Practical resources for making your business easier to find.
