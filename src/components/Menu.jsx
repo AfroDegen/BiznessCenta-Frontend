@@ -20,17 +20,24 @@ export default function Menu() {
     <>
       <button
         className="menu-btn"
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label="Open menu"
         aria-expanded={open}
-        onClick={() => setOpen(!open)}
-        style={open ? { zIndex: 10000 } : undefined}
+        onClick={() => setOpen(true)}
       >
-        <span className={open ? "menu-bar menu-bar-open" : "menu-bar"} />
+        <span className="menu-bar" />
       </button>
 
       {open &&
         createPortal(
           <nav className="menu-panel">
+            <button
+              className="menu-close-btn"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+            >
+              ✕
+            </button>
+
             <Link to="/about" onClick={() => setOpen(false)}>
               About
             </Link>
