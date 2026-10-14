@@ -10,20 +10,30 @@ export default function Dashboard() {
   useEffect(() => {
     async function loadBusiness() {
       const { data: { session } } = await supabase.auth.getSession();
+
       if (!session) {
         navigate("/", { replace: true });
         return;
       }
+
       const { data, error } = await supabase
        .from("businesses")
        .select("*")
        .eq("owner_id", session.user.id)
        .maybeSingle();
-      if (error) console.error(error);
+
+      if (error) {
+        console.error(error);
+        setLoading(false);
+        return;
+      }
+
       if (!data) {
+        setLoading(false);
         navigate("/create-business", { replace: true });
         return;
       }
+
       setBusiness(data);
       setLoading(false);
     }
@@ -31,6 +41,10 @@ export default function Dashboard() {
   }, [navigate]);
 
   if (loading) {
+    return <div className="dashboard-page">Loading your dashboard...</div>;
+  }
+
+  if (!business) {
     return <div className="dashboard-page">Loading your dashboard...</div>;
   }
 
