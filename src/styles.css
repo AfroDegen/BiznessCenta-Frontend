@@ -2813,3 +2813,36 @@ background: var(–ivory);
 backdrop-filter: none;
 }
 }
+.dashboard-page {
+  min-height: 100vh;
+  background: #F8F6F0;
+  padding-bottom: 120px; /* This stops content from going under nav */
+}
+
+.dashboard-content {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 16px;
+  right: 16px;
+  z-index: 50;
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Make sure last card is fully visible */
+.insight-card:last-child {
+  margin-bottom: 20px;
+}
