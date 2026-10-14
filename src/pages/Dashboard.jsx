@@ -45,14 +45,6 @@ export default function Dashboard() {
     loadBusiness();
   }, [navigate]);
 
-  async function handleSignOut() {
-    await supabase.auth.signOut();
-
-    navigate("/", {
-      replace: true,
-    });
-  }
-
   if (loading) {
     return (
       <div className="dashboard-page">
@@ -113,13 +105,6 @@ export default function Dashboard() {
           </p>
         </div>
       </section>
-
-      <button
-        className="primary-btn signout-btn"
-        onClick={handleSignOut}
-      >
-        Sign Out
-      </button>
 
       <nav className="bottom-nav">
         <NavLink
