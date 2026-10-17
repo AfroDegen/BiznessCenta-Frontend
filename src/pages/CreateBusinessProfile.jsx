@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../services/supabase";
@@ -16,52 +17,67 @@ export default function CreateBusiness() {
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
+    setForm((current) => ({
+      ...current,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (saving) return;
+
     setSaving(true);
     setError("");
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    try {
+      const {
+        data: { user },
+        error: authError,
+      } = await supabase.auth.getUser();
 
-    if (!user) {
-      navigate("/");
-      return;
-    }
+      if (authError) throw authError;
 
-    const { data: existing } = await supabase
-      .from("businesses")
-      .select("id")
-      .eq("owner_id", user.id)
-      .maybeSingle();
+      if (!user) {
+        navigate("/", { replace: true });
+        return;
+      }
 
-    if (existing) {
-      navigate("/dashboard");
-      return;
-    }
+      const {
+        data: existing,
+        error: lookupError,
+      } = await supabase
+        .from("businesses")
+        .select("id")
+        .eq("owner_id", user.id)
+        .maybeSingle();
 
-    const { error: insertError } = await supabase
-      .from("businesses")
-      .insert({
-        owner_id: user.id,
-        ...form,
-      });
+      if (lookupError) throw lookupError;
 
-    if (insertError) {
-      setError(insertError.message);
+      if (existing) {
+        navigate("/pricing", { replace: true });
+        return;
+      }
+
+      const { error: insertError } = await supabase
+        .from("businesses")
+        .insert({
+          owner_id: user.id,
+          ...form,
+        });
+
+      if (insertError) throw insertError;
+
+      navigate("/pricing", { replace: true });
+    } catch (err) {
+      setError(
+        err?.message ||
+          "Something went wrong. Please try again."
+      );
+    } finally {
       setSaving(false);
-      return;
     }
-
-    navigate("/dashboard");
   };
 
   return (
@@ -103,7 +119,9 @@ export default function CreateBusiness() {
           />
 
           {error && (
-            <p className="form-error">{error}</p>
+            <p className="form-error" role="alert">
+              {error}
+            </p>
           )}
 
           <button
@@ -111,9 +129,7 @@ export default function CreateBusiness() {
             type="submit"
             disabled={saving}
           >
-            {saving
-              ? "Saving..."
-              : "Save & Continue"}
+            {saving ? "Saving..." : "Save & Continue"}
           </button>
         </form>
       </div>
