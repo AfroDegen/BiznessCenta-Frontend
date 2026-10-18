@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import GoogleButton from "../components/GoogleButton";
 import Menu from "../components/Menu";
 
-const WORDS = ["customers", "buyers", "neighbours", "Google"];
+const WORDS = ["ideas", "product", "business", "brand"];
 
 const STEPS = [
   {
@@ -133,7 +133,7 @@ export default function Home() {
         ))}
       </nav>
 
-      {/* Screen 1 */}
+      {/* Screen 1 - NEW HEADLINE */}
       <section className="lp-screen pn-screen">
         <header className="pn-header">
           <span className="pn-brand">
@@ -145,14 +145,14 @@ export default function Home() {
 
         <div className="pn-hero">
           <h1 className="pn-title">
-            Get your bizness found by
-            <span className="pn-word" key={word}>{WORDS[word]}.</span>
+            make your{" "}
+            <span className="pn-word" key={word}>
+              {WORDS[word]}
+            </span>{" "}
+            visible on the internet
           </h1>
 
-          <p className="pn-sub">
-            We set up your Google profile, your website and your listings, so
-            buyers can find you and reach you on WhatsApp.
-          </p>
+          <p className="pn-sub">position your business for growth.</p>
 
           <div className="lp-cta">
             <GoogleButton />
@@ -169,7 +169,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Screen 2 */}
+      {/* Screen 2 - KEPT AS IS */}
       <section className="lp-screen lp-screen-preview">
         <div className="lp-body lp-body-light pn-body2">
           <h2 className="lp-h2 lp-h2-dark">This is how customers find you.</h2>
