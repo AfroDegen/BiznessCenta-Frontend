@@ -2,225 +2,149 @@ import { useRef, useState } from "react";
 import GoogleButton from "../components/GoogleButton";
 import Menu from "../components/Menu";
 import { signInWithGoogle } from "../services/auth";
+import headerIcon from "../../header-icon.WEBP";
 
-/* Change the words here to retarget the page to another kind of business. */
-const COPY = {
-  title: "Get your travel agency found by travellers.",
-  sub: "We set up your Google profile, your website and your WhatsApp enquiries, so people searching near you can find you and message you.",
-  searchQuery: "travel agency near me",
-  businessName: "Lagos Travel Desk",
-  chatQuestion: "Do you have Dubai packages?",
-  chatAnswer: "Yes. Send your travel dates and I will confirm today.",
-};
-
-const STEPS = [
+/*
+  Home: one header, one basic swipe slider, one sign-in button.
+  Edit the words below. Nothing else needs to change.
+*/
+const SLIDES = [
   {
-    n: "01",
-    title: "Sign in with Google",
-    text: "One tap. No forms, no passwords to remember.",
+    key: "find",
+    title: "Get your business found on Google.",
+    text: "We set up your Google profile, your website and your WhatsApp enquiries, so customers near you can find you and message you.",
   },
   {
-    n: "02",
-    title: "Answer a few quick questions",
-    text: "About your business, so we set things up properly.",
+    key: "how",
+    title: "How it works",
+    steps: [
+      { n: "1", t: "Sign in with Google", d: "One tap. No passwords to remember." },
+      { n: "2", t: "Answer a few quick questions", d: "About your business, so we set it up properly." },
+      { n: "3", t: "Choose your plan", d: "Then we get to work for you." },
+    ],
   },
   {
-    n: "03",
-    title: "Choose your plan",
-    text: "Google profile, website, reviews and WhatsApp enquiries, set up for you.",
+    key: "get",
+    title: "What you get",
+    list: [
+      "A Google Business Profile customers can find",
+      "A simple website you can share",
+      "WhatsApp enquiries sent straight to you",
+      "A way to collect reviews",
+    ],
   },
 ];
 
-/* Sample cards, used for the collage and the grid. Decorative only. */
-function Card({ type }) {
-  if (type === "search") {
-    return (
-      <div className="pn-card">
-        <div className="pn-q">{COPY.searchQuery}</div>
-        <p className="pn-n">{COPY.businessName}</p>
-        <p className="pn-m">4.8 rating, 24 reviews, Lagos</p>
-        <div className="pn-chips">
-          <span>Call</span>
-          <span>Directions</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (type === "map") {
-    return (
-      <div className="pn-card">
-        <div className="pn-map">
-          <span className="pn-pin" />
-        </div>
-        <p className="pn-n">{COPY.businessName}</p>
-        <p className="pn-m">Open now, 1.2 km away</p>
-      </div>
-    );
-  }
-
-  if (type === "chat") {
-    return (
-      <div className="pn-card">
-        <p className="pn-b pn-in">{COPY.chatQuestion}</p>
-        <p className="pn-b pn-out">{COPY.chatAnswer}</p>
-      </div>
-    );
-  }
-
-  if (type === "review") {
-    return (
-      <div className="pn-card">
-        <p className="pn-m">Customer reviews</p>
-        <p className="pn-big">4.8</p>
-        <span className="pn-bar"><i /></span>
-        <p className="pn-m">24 reviews</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="pn-card">
-      <div className="pn-site">
-        <b />
-        <i />
-        <i className="short" />
-        <u />
-      </div>
-      <p className="pn-n">Your website</p>
-      <p className="pn-m">Ready to share</p>
-    </div>
-  );
-}
-
 export default function Home() {
-  const lpRef = useRef(null);
-  const [screen, setScreen] = useState(0);
+  const trackRef = useRef(null);
+  const [index, setIndex] = useState(0);
 
   function onScroll() {
-    const el = lpRef.current;
+    const el = trackRef.current;
     if (!el) return;
-    setScreen(Math.round(el.scrollTop / el.clientHeight));
+    setIndex(Math.round(el.scrollLeft / el.clientWidth));
   }
 
   function go(i) {
-    const el = lpRef.current;
+    const el = trackRef.current;
     if (!el) return;
-    el.scrollTo({ top: i * el.clientHeight, behavior: "smooth" });
+    el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
   }
 
   return (
-    <div className="lp" ref={lpRef} onScroll={onScroll}>
-      <nav className="pn-dots" aria-label="Page sections">
-        {[0, 1, 2].map((i) => (
-          <button
-            key={i}
-            className={screen === i ? "pn-dot-btn active" : "pn-dot-btn"}
-            aria-label={`Go to section ${i + 1}`}
-            onClick={() => go(i)}
+    <div className="hs-page">
+      <header className="hs-header">
+        <div className="hs-lockup">
+          <img
+            src={headerIcon}
+            alt=""
+            width="40"
+            height="40"
+            className="hs-logo"
           />
+          <span className="hs-brand">
+            Bizness <span className="hs-brand-g">Centa</span>
+          </span>
+        </div>
+
+        <div className="hs-actions">
+          <button
+            type="button"
+            className="hs-signin"
+            onClick={() => signInWithGoogle()}
+          >
+            Sign in
+          </button>
+          <Menu />
+        </div>
+      </header>
+
+      <div
+        className="hs-track"
+        ref={trackRef}
+        onScroll={onScroll}
+        role="region"
+        aria-label="About Bizness Centa"
+      >
+        {SLIDES.map((s) => (
+          <section className="hs-slide" key={s.key}>
+            <div className="hs-slide-inner">
+              {s.key === "find" ? (
+                <h1 className="hs-h1">{s.title}</h1>
+              ) : (
+                <h2 className="hs-h2">{s.title}</h2>
+              )}
+
+              {s.text && <p className="hs-text">{s.text}</p>}
+
+              {s.steps && (
+                <ol className="hs-steps">
+                  {s.steps.map((x) => (
+                    <li key={x.n}>
+                      <span className="hs-step-n">{x.n}</span>
+                      <span>
+                        <b>{x.t}</b>
+                        <em>{x.d}</em>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              )}
+
+              {s.list && (
+                <ul className="hs-list">
+                  {s.list.map((x) => (
+                    <li key={x}>{x}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </section>
         ))}
-      </nav>
+      </div>
 
-      {/* Screen 1 */}
-      <section className="lp-screen pn-screen">
-        <header className="pn-header">
-          <div className="pn-lockup">
-            <img
-              src="/header-icon.WEBP"
-              alt=""
-              width="40"
-              height="40"
-              className="pn-logo"
-            />
-            <span className="pn-brand">
-              <span className="pn-brand-w">Bizness</span>{" "}
-              <span className="pn-brand-g">Centa</span>
-            </span>
-          </div>
-
-          <div className="pn-actions">
+      <div className="hs-bottom">
+        <div className="hs-dots" role="tablist" aria-label="Slides">
+          {SLIDES.map((s, i) => (
             <button
+              key={s.key}
               type="button"
-              className="pn-signin"
-              onClick={() => signInWithGoogle()}
-            >
-              Sign in
-            </button>
-            <Menu />
-          </div>
-        </header>
-
-        <div className="pn-hero">
-          <h1 className="pn-title">{COPY.title}</h1>
-
-          <p className="pn-sub">{COPY.sub}</p>
-
-          <div className="lp-cta">
-            <GoogleButton />
-            <p className="lp-cta-note">Free to start. Takes under a minute.</p>
-          </div>
+              role="tab"
+              aria-selected={index === i}
+              aria-label={`Slide ${i + 1}`}
+              className={index === i ? "hs-dot on" : "hs-dot"}
+              onClick={() => go(i)}
+            />
+          ))}
         </div>
 
-        <div className="pn-peek" aria-hidden="true">
-          <div className="pn-peek-row">
-            {["map", "chat", "search", "review", "site"].map((t) => (
-              <Card key={t} type={t} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Screen 2 */}
-      <section className="lp-screen lp-screen-preview">
-        <div className="lp-body lp-body-light pn-body2">
-          <h2 className="lp-h2 lp-h2-dark">This is how travellers find you.</h2>
-          <p className="lp-h2-sub lp-sub-dark">
-            On Google Search, on Maps, and on WhatsApp.
-          </p>
-
-          <div className="pn-grid" aria-hidden="true">
-            {["search", "map", "chat", "review", "site"].map((t) => (
-              <Card key={t} type={t} />
-            ))}
-          </div>
-
-          <p className="pn-sample">Sample business, for illustration.</p>
-
-          <div className="lp-cta">
-            <GoogleButton />
-          </div>
-        </div>
-      </section>
-
-      {/* Screen 3 */}
-      <section className="lp-screen lp-screen-2">
-        <div className="lp-body">
-          <h2 className="lp-h2">Travellers are already searching.</h2>
-          <p className="lp-h2-sub">Make sure they find you.</p>
-
-          <div className="lp-steps">
-            {STEPS.map((s) => (
-              <div className="lp-step" key={s.n}>
-                <span className="lp-step-n">{s.n}</span>
-                <div>
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="lp-cta">
-            <GoogleButton />
-          </div>
-        </div>
-
-        <footer className="lp-footer">
-          By continuing, you agree to our <a href="/terms">Terms of Service</a>{" "}
-          and <a href="/privacy">Privacy Policy</a>.
-        </footer>
-      </section>
+        <GoogleButton />
+        <p className="hs-note">Free to start. Takes under a minute.</p>
+        <p className="hs-legal">
+          By continuing, you agree to our <a href="/terms">Terms</a> and{" "}
+          <a href="/privacy">Privacy Policy</a>.
+        </p>
+      </div>
     </div>
   );
 }
