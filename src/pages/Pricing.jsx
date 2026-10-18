@@ -1,77 +1,9 @@
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-const PLANS = [
-  {
-    id: "basic",
-    name: "Basic",
-    tagline: "Start building your online presence.",
-    price: "Free",
-    note: "No payment required",
-    features: [
-      "Business visibility audit",
-      "Free website on a Bizness Centa subdomain",
-    ],
-  },
-  {
-    id: "starter",
-    name: "Starter",
-    tagline: "Get your business ready to be found.",
-    price: "₦25,000",
-    note: "One-time payment",
-    features: [
-      "Business visibility audit",
-      "Website setup",
-      "Google Business Profile optimization",
-      "Review link setup",
-      "Basic business assets",
-      "30-day support",
-    ],
-  },
-  {
-    id: "growth",
-    name: "Growth",
-    tagline: "Build a stronger discovery system.",
-    price: "₦50,000",
-    note: "One-time payment",
-    intro: "Everything in Starter, plus:",
-    features: [
-      "AI receptionist setup",
-      "Review management setup",
-      "Business listings support",
-      "Beacon visibility analysis",
-      "Google profile content support",
-      "Priority implementation support",
-    ],
-  },
-  {
-    id: "premium",
-    name: "Premium",
-    tagline: "A tailored, hands-on visibility setup.",
-    price: "₦100,000",
-    note: "One-time payment",
-    intro: "Everything in Growth, plus:",
-    features: [
-      "Advanced Beacon visibility analysis",
-      "Competitor visibility review",
-      "Multi-location planning",
-      "Lead capture setup",
-      "Personalized visibility action plan",
-      "Agreed custom implementation scope",
-    ],
-  },
-];
-
-function whatsappLink(planName) {
-  const message = encodeURIComponent(
-    `Hello Bizness Centa, I'm interested in the ${planName} plan. Please confirm the deliverables and next steps.`
-  );
-
-  return `https://wa.me/2349110483989?text=${message}`;
-}
+import { Link, useNavigate } from "react-router-dom";
+import { PLANS, whatsappLink } from "../data/plans";
 
 export default function Pricing() {
+  const navigate = useNavigate();
   const [selected, setSelected] = useState("basic");
   const [open, setOpen] = useState(null);
 
@@ -80,7 +12,7 @@ export default function Pricing() {
   return (
     <main className="pricing-page">
       <Link to="/dashboard" className="legal-back">
-        Back to dashboard
+        Skip for now
       </Link>
 
       <header className="pricing-header">
@@ -179,20 +111,29 @@ export default function Pricing() {
       </div>
 
       <div className="pricing-cta">
-        <a
+        <button
+          type="button"
           className="primary-btn pricing-btn"
-          href={whatsappLink(plan.name)}
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={() =>
+            navigate(plan.id === "basic" ? "/dashboard" : `/checkout/${plan.id}`)
+          }
         >
           {plan.id === "basic"
             ? "Start with Basic"
             : `Continue with ${plan.name}`}
-        </a>
+        </button>
 
         <p className="pricing-note">
-          We'll confirm the exact deliverables before any
-          paid work begins. Contact us on WhatsApp.
+          Next you'll review exactly what you get and when.
+          Questions?{" "}
+          <a
+            href={whatsappLink("Hello Bizness Centa, I have a question about the plans.")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chat with us on WhatsApp
+          </a>
+          .
         </p>
       </div>
     </main>
