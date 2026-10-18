@@ -9,6 +9,8 @@ import Profile from "./pages/Profile";
 import Legal from "./pages/Legal";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
+import Checkout from "./pages/Checkout";
+import Done from "./pages/Done";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/about" element={<About />} />
       <Route path="/pricing" element={<Pricing />} />
+      <Route path="/checkout/:planId" element={<Checkout />} />
+      <Route path="/done" element={<Done />} />
       <Route path="/terms" element={<Legal />} />
       <Route path="/privacy" element={<Legal />} />
     </Routes>
