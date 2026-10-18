@@ -3413,144 +3413,289 @@ backdrop-filter: none;
   font-weight: 700;
   text-align: center;
 }
-/* === Bizness Centa - New Headline Swapping === */
-:root {
-  --naija-green: #008751;
+
+/* ======================================================
+   HOME (hs-*): header + basic swipe slider + sign in
+   Self-contained. Does not use any pn-* or lp-* rules.
+   ====================================================== */
+
+.hs-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  max-width: 560px;
+  margin: 0 auto;
+  overflow: hidden;
+  color: #0f2a1c;
 }
 
-.pn-title {
-  font-size: clamp(36px, 6vw, 62px);
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  text-transform: lowercase;
-  max-width: 14ch;
+.hs-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 18px 6px;
 }
 
-.pn-word {
-  display: inline-block;
-  color: var(--naija-green);
-  position: relative;
-  min-width: 3.2em;
-  animation: pnWordSwap 0.35s ease;
-  will-change: transform, opacity;
-}
-
-@keyframes pnWordSwap {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.pn-sub {
-  margin-top: 18px;
-  font-size: clamp(18px, 2.5vw, 22px);
-  line-height: 1.3;
-  font-weight: 600;
-  text-transform: lowercase;
-  color: #111;
-  opacity: 0.85;
-}
-
-/* Optional: if your .pn-brand-g should use final icon green */
-.pn-brand-g {
-  color: var(--naija-green);
-}
-
-/* Mobile tweak */
-@media (max-width: 640px) {
-  .pn-title {
-    font-size: 38px;
-    max-width: 12ch;
-  }
-  .pn-word {
-    min-width: 2.8em;
-  }
-}
-/* ---------- HOME: TOKENS THE PN STYLES NEED + HEADER ---------- */
-
-:root {
-  --g-900: #0b3a22;
-  --g-800: #0d5a33;
-  --g-700: #0d6e3b;
-  --g-600: #168a4c;
-  --g-500: #2fb36a;
-  --mint: #c4f0d6;
-  --sky: #cde9f1;
-  --glass: rgba(255, 255, 255, 0.52);
-  --glass-border: rgba(255, 255, 255, 0.78);
-  --glass-shadow: 0 8px 32px rgba(31, 74, 47, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.85);
-  --blur: blur(22px) saturate(160%);
-}
-
-.pn-lockup {
+.hs-lockup {
   display: flex;
   align-items: center;
   gap: 10px;
   min-width: 0;
 }
 
-.pn-logo {
+.hs-logo {
   flex: none;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(11, 58, 34, 0.18);
+  object-fit: contain;
 }
 
-.pn-brand {
+.hs-brand {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   white-space: nowrap;
+  color: #0f2a1c;
 }
 
-.pn-actions {
+.hs-brand-g {
+  color: #008751;
+}
+
+.hs-actions {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex: none;
 }
 
-.pn-signin {
-  min-height: 44px;
-  padding: 0 18px;
-  border: 1px solid rgba(11, 58, 34, 0.22);
+.hs-signin {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1.5px solid #0d6e3b;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.78);
-  color: var(--g-900);
-  font-family: inherit;
-  font-size: 14px;
+  background: transparent;
+  color: #0d6e3b;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.pn-signin:hover { background: #fff; }
-.pn-signin:active { transform: scale(0.97); }
-.pn-signin:focus-visible { outline: 2px solid var(--g-600); outline-offset: 2px; }
-
-/* The menu button sits on the light header, so give it a visible face. */
-.pn-header .menu-btn {
-  border-color: rgba(11, 58, 34, 0.22);
-  background: rgba(255, 255, 255, 0.78);
+.hs-header .menu-btn {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border: 1.5px solid rgba(15, 42, 28, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
 }
 
-.pn-header .menu-btn:hover { background: #fff; }
-
-@media (max-width: 380px) {
-  .pn-header { padding-left: 16px; }
-  .pn-brand { font-size: 19px; }
-  .pn-signin { padding: 0 14px; }
+.hs-header .menu-bar,
+.hs-header .menu-bar::before,
+.hs-header .menu-bar::after {
+  background: #0f2a1c;
 }
 
-/* Short phones: drop the fifth sample card so screen 2 fits without scrolling. */
-@media (max-height: 800px) {
-  .pn-grid .pn-card:nth-child(5) { display: none; }
+.hs-header .menu-bar::before {
+  top: -6px;
 }
 
-@media (max-height: 760px) {
-  .pn-body2 { padding-top: 22px; }
-  .pn-body2 .lp-h2 { font-size: 25px; }
+.hs-header .menu-bar::after {
+  top: 6px;
+}
+
+/* The slider */
+
+.hs-track {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.hs-track::-webkit-scrollbar {
+  display: none;
+}
+
+.hs-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding: clamp(22px, 6vh, 56px) 22px 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.hs-slide-inner {
+  width: 100%;
+}
+
+.hs-h1 {
+  font-size: clamp(34px, 9.5vw, 46px);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f2a1c;
+}
+
+.hs-h2 {
+  font-size: clamp(28px, 8vw, 36px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #0f2a1c;
+  margin-bottom: 18px;
+}
+
+.hs-text {
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #3f5a49;
+}
+
+.hs-steps,
+.hs-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.hs-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(13, 110, 59, 0.12);
+}
+
+.hs-step-n {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #0d6e3b;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.hs-steps b {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f2a1c;
+}
+
+.hs-steps em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 14px;
+  color: #3f5a49;
+}
+
+.hs-list li {
+  position: relative;
+  padding: 14px 16px 14px 44px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(13, 110, 59, 0.12);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #0f2a1c;
+}
+
+.hs-list li::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  width: 16px;
+  height: 9px;
+  margin-top: -7px;
+  border-left: 3px solid #008751;
+  border-bottom: 3px solid #008751;
+  transform: rotate(-45deg);
+}
+
+/* Dots, button, small print */
+
+.hs-bottom {
+  flex: none;
+  padding: 6px 22px calc(14px + env(safe-area-inset-bottom));
+}
+
+.hs-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.hs-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(15, 42, 28, 0.22);
+  cursor: pointer;
+  transition: width 200ms ease, background 200ms ease;
+}
+
+.hs-dot.on {
+  width: 24px;
+  background: #008751;
+}
+
+.hs-note {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #3f5a49;
+}
+
+.hs-legal {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #5f7767;
+}
+
+@media (max-height: 700px) {
+  .hs-header {
+    padding-top: 10px;
+  }
+  .hs-h1 {
+    font-size: 32px;
+  }
+  .hs-text {
+    font-size: 15.5px;
+    margin-top: 12px;
+  }
+  .hs-steps li,
+  .hs-list li {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  .hs-legal {
+    display: none;
+  }
 }
