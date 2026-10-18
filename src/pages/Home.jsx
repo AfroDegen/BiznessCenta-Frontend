@@ -1,8 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import GoogleButton from "../components/GoogleButton";
 import Menu from "../components/Menu";
+import { signInWithGoogle } from "../services/auth";
 
-const WORDS = ["ideas", "product", "business", "brand"];
+/* Change the words here to retarget the page to another kind of business. */
+const COPY = {
+  title: "Get your travel agency found by travellers.",
+  sub: "We set up your Google profile, your website and your WhatsApp enquiries, so people searching near you can find you and message you.",
+  searchQuery: "travel agency near me",
+  businessName: "Lagos Travel Desk",
+  chatQuestion: "Do you have Dubai packages?",
+  chatAnswer: "Yes. Send your travel dates and I will confirm today.",
+};
 
 const STEPS = [
   {
@@ -12,13 +21,13 @@ const STEPS = [
   },
   {
     n: "02",
-    title: "Tell us about your business",
-    text: "Name, category, location and contact.",
+    title: "Answer a few quick questions",
+    text: "About your business, so we set things up properly.",
   },
   {
     n: "03",
-    title: "Make your brand easier for buyers to find on Google.",
-    text: "Google profile, website, reviews and WhatsApp enquiries, all set up for you.",
+    title: "Choose your plan",
+    text: "Google profile, website, reviews and WhatsApp enquiries, set up for you.",
   },
 ];
 
@@ -27,8 +36,8 @@ function Card({ type }) {
   if (type === "search") {
     return (
       <div className="pn-card">
-        <div className="pn-q">tailor near me</div>
-        <p className="pn-n">Adeyemi Tailoring</p>
+        <div className="pn-q">{COPY.searchQuery}</div>
+        <p className="pn-n">{COPY.businessName}</p>
         <p className="pn-m">4.8 rating, 24 reviews, Lagos</p>
         <div className="pn-chips">
           <span>Call</span>
@@ -44,7 +53,7 @@ function Card({ type }) {
         <div className="pn-map">
           <span className="pn-pin" />
         </div>
-        <p className="pn-n">Adeyemi Tailoring</p>
+        <p className="pn-n">{COPY.businessName}</p>
         <p className="pn-m">Open now, 1.2 km away</p>
       </div>
     );
@@ -53,8 +62,8 @@ function Card({ type }) {
   if (type === "chat") {
     return (
       <div className="pn-card">
-        <p className="pn-b pn-in">Do you make agbada?</p>
-        <p className="pn-b pn-out">Yes. Send your measurements and I will confirm today.</p>
+        <p className="pn-b pn-in">{COPY.chatQuestion}</p>
+        <p className="pn-b pn-out">{COPY.chatAnswer}</p>
       </div>
     );
   }
@@ -70,43 +79,23 @@ function Card({ type }) {
     );
   }
 
-  if (type === "site") {
-    return (
-      <div className="pn-card">
-        <div className="pn-site">
-          <b />
-          <i />
-          <i className="short" />
-          <u />
-        </div>
-        <p className="pn-n">Your website</p>
-        <p className="pn-m">Ready to share</p>
-      </div>
-    );
-  }
-
   return (
     <div className="pn-card">
-      <p className="pn-open"><span className="pn-dot" />Open now</p>
-      <p className="pn-m">Closes 7 PM</p>
-      <div className="pn-chips">
-        <span>WhatsApp</span>
+      <div className="pn-site">
+        <b />
+        <i />
+        <i className="short" />
+        <u />
       </div>
+      <p className="pn-n">Your website</p>
+      <p className="pn-m">Ready to share</p>
     </div>
   );
 }
 
 export default function Home() {
   const lpRef = useRef(null);
-  const [word, setWord] = useState(0);
   const [screen, setScreen] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setWord((w) => (w + 1) % WORDS.length);
-    }, 2400);
-    return () => clearInterval(timer);
-  }, []);
 
   function onScroll() {
     const el = lpRef.current;
@@ -133,26 +122,39 @@ export default function Home() {
         ))}
       </nav>
 
-      {/* Screen 1 - NEW HEADLINE */}
+      {/* Screen 1 */}
       <section className="lp-screen pn-screen">
         <header className="pn-header">
-          <span className="pn-brand">
-            <span className="pn-brand-w">Bizness</span>{" "}
-            <span className="pn-brand-g">Centa</span>
-          </span>
-          <Menu />
+          <div className="pn-lockup">
+            <img
+              src="/header-icon.png"
+              alt=""
+              width="40"
+              height="40"
+              className="pn-logo"
+            />
+            <span className="pn-brand">
+              <span className="pn-brand-w">Bizness</span>{" "}
+              <span className="pn-brand-g">Centa</span>
+            </span>
+          </div>
+
+          <div className="pn-actions">
+            <button
+              type="button"
+              className="pn-signin"
+              onClick={() => signInWithGoogle()}
+            >
+              Sign in
+            </button>
+            <Menu />
+          </div>
         </header>
 
         <div className="pn-hero">
-          <h1 className="pn-title">
-            make your{" "}
-            <span className="pn-word" key={word}>
-              {WORDS[word]}
-            </span>{" "}
-            visible on the internet
-          </h1>
+          <h1 className="pn-title">{COPY.title}</h1>
 
-          <p className="pn-sub">position your business for growth.</p>
+          <p className="pn-sub">{COPY.sub}</p>
 
           <div className="lp-cta">
             <GoogleButton />
@@ -169,10 +171,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Screen 2 - KEPT AS IS */}
+      {/* Screen 2 */}
       <section className="lp-screen lp-screen-preview">
         <div className="lp-body lp-body-light pn-body2">
-          <h2 className="lp-h2 lp-h2-dark">This is how customers find you.</h2>
+          <h2 className="lp-h2 lp-h2-dark">This is how travellers find you.</h2>
           <p className="lp-h2-sub lp-sub-dark">
             On Google Search, on Maps, and on WhatsApp.
           </p>
@@ -194,7 +196,7 @@ export default function Home() {
       {/* Screen 3 */}
       <section className="lp-screen lp-screen-2">
         <div className="lp-body">
-          <h2 className="lp-h2">Your customers are already searching.</h2>
+          <h2 className="lp-h2">Travellers are already searching.</h2>
           <p className="lp-h2-sub">Make sure they find you.</p>
 
           <div className="lp-steps">
