@@ -3413,3 +3413,62 @@ backdrop-filter: none;
   font-weight: 700;
   text-align: center;
 }
+/* === Bizness Centa - New Headline Swapping === */
+:root {
+  --naija-green: #008751;
+}
+
+.pn-title {
+  font-size: clamp(36px, 6vw, 62px);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+  max-width: 14ch;
+}
+
+.pn-word {
+  display: inline-block;
+  color: var(--naija-green);
+  position: relative;
+  min-width: 3.2em;
+  animation: pnWordSwap 0.35s ease;
+  will-change: transform, opacity;
+}
+
+@keyframes pnWordSwap {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.pn-sub {
+  margin-top: 18px;
+  font-size: clamp(18px, 2.5vw, 22px);
+  line-height: 1.3;
+  font-weight: 600;
+  text-transform: lowercase;
+  color: #111;
+  opacity: 0.85;
+}
+
+/* Optional: if your .pn-brand-g should use final icon green */
+.pn-brand-g {
+  color: var(--naija-green);
+}
+
+/* Mobile tweak */
+@media (max-width: 640px) {
+  .pn-title {
+    font-size: 38px;
+    max-width: 12ch;
+  }
+  .pn-word {
+    min-width: 2.8em;
+  }
+}
