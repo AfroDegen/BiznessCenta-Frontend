@@ -127,7 +127,7 @@ export default function Home() {
         <header className="pn-header">
           <div className="pn-lockup">
             <img
-              src="/header-icon.PNG"
+              src="/header-icon.WEBP"
               alt=""
               width="40"
               height="40"
