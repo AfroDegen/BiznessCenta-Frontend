@@ -3472,3 +3472,85 @@ backdrop-filter: none;
     min-width: 2.8em;
   }
 }
+/* ---------- HOME: TOKENS THE PN STYLES NEED + HEADER ---------- */
+
+:root {
+  --g-900: #0b3a22;
+  --g-800: #0d5a33;
+  --g-700: #0d6e3b;
+  --g-600: #168a4c;
+  --g-500: #2fb36a;
+  --mint: #c4f0d6;
+  --sky: #cde9f1;
+  --glass: rgba(255, 255, 255, 0.52);
+  --glass-border: rgba(255, 255, 255, 0.78);
+  --glass-shadow: 0 8px 32px rgba(31, 74, 47, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --blur: blur(22px) saturate(160%);
+}
+
+.pn-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.pn-logo {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(11, 58, 34, 0.18);
+}
+
+.pn-brand {
+  white-space: nowrap;
+}
+
+.pn-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pn-signin {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(11, 58, 34, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--g-900);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.pn-signin:hover { background: #fff; }
+.pn-signin:active { transform: scale(0.97); }
+.pn-signin:focus-visible { outline: 2px solid var(--g-600); outline-offset: 2px; }
+
+/* The menu button sits on the light header, so give it a visible face. */
+.pn-header .menu-btn {
+  border-color: rgba(11, 58, 34, 0.22);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.pn-header .menu-btn:hover { background: #fff; }
+
+@media (max-width: 380px) {
+  .pn-header { padding-left: 16px; }
+  .pn-brand { font-size: 19px; }
+  .pn-signin { padding: 0 14px; }
+}
+
+/* Short phones: drop the fifth sample card so screen 2 fits without scrolling. */
+@media (max-height: 800px) {
+  .pn-grid .pn-card:nth-child(5) { display: none; }
+}
+
+@media (max-height: 760px) {
+  .pn-body2 { padding-top: 22px; }
+  .pn-body2 .lp-h2 { font-size: 25px; }
+}
