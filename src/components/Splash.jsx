@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import headerIcon from "../../header-icon.WEBP";
 
-const SHOW_MS = 700;
+const SHOW_MS = 1500;
 const FADE_MS = 220;
 
 export default function Splash({ onDone }) {
