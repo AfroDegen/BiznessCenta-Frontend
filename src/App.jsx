@@ -1,3 +1,4 @@
+import { useState, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -12,10 +13,16 @@ import Pricing from "./pages/Pricing";
 import Checkout from "./pages/Checkout";
 import Done from "./pages/Done";
 import CaptainNigeria from "./components/CaptainNigeria";
+import Splash from "./components/Splash";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const done = useCallback(() => setLoading(false), []);
+
   return (
     <>
+      {loading && <Splash onDone={done} />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/welcome" element={<Welcome />} />
